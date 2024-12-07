@@ -48,6 +48,7 @@ import tkinter as tk
 import tkinter.messagebox
 import sqlite3
 
+# no clue if the db stuff is right. i am so sleep deprived
 
 def create_db():
     conn = sqlite3.connect('cfc_orders.db')
@@ -75,21 +76,15 @@ def insert_order(item_name, item_type, price):
         INSERT INTO orders (item_name, item_type, price)
         VALUES (?, ?, ?)
     ''', (item_name, item_type, price))
-
-
     conn.commit()
 
     order_id = cursor.lastrowid
     conn.close()
 
     return order_id
-
-                        
     
 class Menu:
-
     def __init__(self):
-        
         # create the main window widget
         self.main_window = tkinter.Tk()
         # display title
@@ -108,12 +103,10 @@ class Menu:
         # packing display button
         self.show_order_button.pack(pady=10)
 
-
-
 # I tried to add a 'quit' button but it kept causing errors for some reason :(
 # I'm painfully aware it looks ugly when fullscreened; I didn't have time to optimize
-# it as well as I wanted due to health issues
-
+# it as well as I wanted due to health issues 
+        
         # all the modules 
         self.__build_welcome_message()
         self.__build_combos()
@@ -136,7 +129,6 @@ class Menu:
         self.show_sauce_choice()
         self.show_order()
 
-
         # enter the tkinter main loop
         tkinter.mainloop()
 
@@ -145,7 +137,6 @@ class Menu:
 
         # labels and frames
         # I added a red color to make the welcome message pop;
-        # I chose red because I noticed a lot of fast food places use red letters
         self.welcome_label = tkinter.Label(
             self.main_window, text='Welcome to Calhoun Fried Chicken!',
             fg='#FF004F')
@@ -224,7 +215,6 @@ class Menu:
 
     # Virtually the same to the combo module
     def __build_main(self):
-
         self.main_frame = tkinter.Frame(self.main_window)
         self.main_frame.pack(side='left', fill='y', padx=5, pady=5)
 
@@ -251,7 +241,6 @@ class Menu:
 
         
     def __chicken_type_buttons(self):
-        
         self.top_frame = tkinter.Frame(self.main_frame)
         self.bottom_frame = tkinter.Frame(self.main_frame)
 
@@ -288,7 +277,6 @@ class Menu:
         
     # module for the sides
     def __build_sides(self):
-        
         self.side_frame = tkinter.Frame(self.main_window)
         self.side_frame.pack(side='left', fill='y', padx=5, pady=5)
         
@@ -329,7 +317,6 @@ class Menu:
 
     # module for drinks
     def __build_drinks(self):
-    
         self.drink_frame = tkinter.Frame(self.main_window)
         self.drink_frame.pack(side='left', fill='y', padx=5, pady=5)
         
@@ -659,7 +646,7 @@ class Menu:
             #tkinter.messagebox.showinfo('Your Order', 'No items have been added to your order yet!')
             return
 
-        
+        # this part has been hashtagged b/c of the database stuff. just keeping it temporarily
         # error message in case it's pressed before any orders are added
         #if not self.order_list:
          #   tkinter.messagebox.showinfo('Your Order', 'No items have been added to your order yet!')
@@ -674,7 +661,6 @@ class Menu:
 
         conn.close()
 
-    
 if __name__ == "__main__":
     menu = Menu()
 #
